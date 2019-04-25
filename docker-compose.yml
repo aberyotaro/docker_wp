@@ -1,0 +1,37 @@
+version: '3'
+services:
+  web:
+    image: wordpress:latest
+    container_name: "wordpress_web"
+    volumes:
+      - "$PWD:/var/www/html"
+      - "$PWD/.docker/backup:/tmp/backup"
+      - "$PWD/.docker/log:/tmp/log"
+    ports:
+      - 8000:80
+    depends_on:
+      - db
+    networks:
+      - wordpress_network
+    environment:
+      - WORDPRESS_DB_HOST=db:3306
+      - WORDPRESS_DB_NAME=wordpress
+      - WORDPRESS_DB_USER=admin
+      - WORDPRESS_DB_PASSWORD=pass
+  db:
+    image: mysql:5.7
+    container_name: "wordpress_db"
+    volumes:
+      - "db-data:/var/lib/mysql"
+    networks:
+      - wordpress_network
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=pass
+volumes:
+  db-data:
+networks:
+  wordpress_network:
+
