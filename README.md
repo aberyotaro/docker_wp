@@ -10,7 +10,7 @@ $ cd your-directory
 
 2. git clone
 ```
-git clone https://github.com/aberyotaro/docker_wp.git
+git clone https://github.com/aberyotaro/docker_wp.git .
 ```
 
 3. docker起動
