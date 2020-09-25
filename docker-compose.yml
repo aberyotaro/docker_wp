@@ -4,9 +4,9 @@ services:
     image: wordpress:latest
     container_name: "wp_web"
     volumes:
-      - "$PWD:/var/www/html"
-      - "$PWD/.docker/backup:/tmp/backup"
-      - "$PWD/.docker/log:/tmp/log"
+      - "$PWD/wordpress:/var/www/html"
+      - "$PWD/wordpress/.docker/backup:/tmp/backup"
+      - "$PWD/wordpress/.docker/log:/tmp/log"
     ports:
       - 8000:80
     depends_on:
